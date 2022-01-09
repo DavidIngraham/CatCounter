@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+catcounter
+
+# IDE Settings
+.vscode
