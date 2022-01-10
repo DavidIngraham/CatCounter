@@ -12,13 +12,14 @@
 class WordCounter
 {
     public:
-        WordCounter(std::string word, bool case_sensitive);
-        unsigned long int count(std::string input_string);
+        WordCounter(std::string word, bool case_sensitive, bool strict);
+        uint64_t count(std::string input_string);
 
     private:
         std::string m_word;
         void to_lower(std::string &str);
         bool m_case_sensitive;
+        bool m_strict;
 };
 
 #endif

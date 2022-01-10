@@ -2,14 +2,14 @@
 #include <algorithm>
 #include <cctype>
 
-WordCounter::WordCounter(std::string word, bool case_sensitive) 
-{
-    // Initialize word counter with standard settings
+WordCounter::WordCounter(std::string word, bool case_sensitive, bool strict) 
+{   
     m_word = word;
     m_case_sensitive = case_sensitive;
+    m_strict = strict;
 }
 
-unsigned long int WordCounter::count(std::string input_string)
+uint64_t WordCounter::count(std::string input_string)
 {
     if ( !m_case_sensitive )
     {
@@ -17,18 +17,31 @@ unsigned long int WordCounter::count(std::string input_string)
     }
 
     std::size_t pos = 0;
-    unsigned long int count = 0;
+    uint64_t count = 0;
     while (pos != std::string::npos)
     {
         pos = input_string.find(m_word, pos);
         if (pos != std::string::npos)
         {
-            count++;
+            if (m_strict) 
+            {
+                // If the found instance of cat is at the beginning or is proceeded by whitespace 
+                // and is followed by whitespace or is at the end of the string
+                if ((pos==0 || isspace(input_string[pos-1])) &&
+                    (isspace(input_string[pos+3]) || pos==input_string.length()-3))
+                {
+                    count++;
+                }
+            } else {
+                count++;
+            }
             pos += 1;
         }
     }
     return count;
 }
+
+
 
 void WordCounter::to_lower(std::string &str) 
 {
