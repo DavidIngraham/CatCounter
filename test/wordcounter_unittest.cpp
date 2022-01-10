@@ -34,5 +34,12 @@ TEST(WordCounterTest, StrictCaseMode) {
 //Test odd unicode characters
 TEST(WordCounterTest, Unicode) {
   WordCounter foo = WordCounter("pasta🍝", false, false);
-  ASSERT_EQ(foo.count(" hasta la pasta🍝 party Party 🐘 mcpasta party"), 1);
+  ASSERT_EQ(foo.count(" hasta la pasta party pasta🍝 Party 🐘 mcpasta party"), 1);
+}
+
+//Test odd unicode characters in case-sensitive mode
+// (unfortunatly there is no upper-case spaghetti)
+TEST(WordCounterTest, UnicodeCase) {
+  WordCounter foo = WordCounter("pasta🍝", true, false);
+  ASSERT_EQ(foo.count(" hasta la pasta party pasta🍝 paSta🍝 Party 🐘 mcpasta party"), 1);
 }
