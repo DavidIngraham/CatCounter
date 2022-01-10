@@ -29,11 +29,11 @@ Mode:
 
 Settings: 
    "--strict": Will only find the "cat" separated by whitespace.
-   "--case-sensitive": 4335
+   "--case-sensitive": Will only find lowercase "cat"s.
 
 Examples:
    catcounter arg "calico cats are a cat above" --strict
-   catcounter file ../test/test.txt --case-sensitive
+   catcounter file ./test/test_file.txt --case-sensitive
    )""";
 
    std::cout << help;
