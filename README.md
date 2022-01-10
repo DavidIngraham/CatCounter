@@ -29,3 +29,16 @@ make
 ```
 
 # Running Tests
+The Google Test framework is required to run unit tests. A docker environment is provided for running tests.
+
+Running the test suits is simple:
+```
+cd catcounter
+docker docker build -t catcounter_test . 
+docker run -it catcounter_test
+```
+
+You can also run CatCounter directly after building the docker image using the following syntax:
+```
+docker run -it catcounter_test ./catcounter cli "kitty cats like catnip" --strict
+```
