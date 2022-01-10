@@ -15,7 +15,7 @@ uint64_t WordCounter::count(std::string input_string)
     {
         to_lower(input_string);
     }
-
+    
     std::size_t pos = 0;
     uint64_t count = 0;
     while (pos != std::string::npos)
@@ -27,8 +27,9 @@ uint64_t WordCounter::count(std::string input_string)
             {
                 // If the found instance of cat is at the beginning or is proceeded by whitespace 
                 // and is followed by whitespace or is at the end of the string
+                int lgt = m_word.length();
                 if ((pos==0 || isspace(input_string[pos-1])) &&
-                    (isspace(input_string[pos+3]) || pos==input_string.length()-3))
+                    (isspace(input_string[pos+lgt]) || pos==input_string.length()-lgt))
                 {
                     count++;
                 }
